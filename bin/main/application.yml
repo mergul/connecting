@@ -1,0 +1,46 @@
+spring:
+  kafka:
+    bootstrap-servers: 0.0.0.0:9092
+    streams:
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+            value:
+              default:
+                type: com.bros.connect.model.RecordSSE
+    producer:
+      properties:
+        spring:
+          json:
+            add:
+              type:
+                headers: false
+            type:
+              mapping: news:com.bros.connect.model.NewsPayload,user:com.bros.connect.model.UserPayload
+
+server:
+  port: 8090
+jwt:
+  header: Authorization
+  param: token
+  prefix: Bearer
+topics:
+  kafka:
+    news-in: news-topics
+    users-in: users-topics
+    reports-in: reports-counts
+    auths-out: auths-topics
+    pageviews-out: pageviews-topics
+    news-out: news-topics
+    users-out: users-topics
+    reports-out: reports-topics
+    listcom-out: balanceRecords-topics
+    partitioncom-out: partitionCommands-topics
+    paymentcom-out: paymentCommands-topics
+    balancecom-out: balanceCommands-topics
+    checkout-out: usersCheckouts-topics
+    usersHistories-out: usersHistories-topics
+#    pageviews-in: pageviews-counts
+
